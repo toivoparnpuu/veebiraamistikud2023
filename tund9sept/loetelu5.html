@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reacti katsetused</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="kiht1"></div>
+  </body>
+  <script type="text/babel">
+    let eesnimed = ["Toivo", "Mari", "Juhan"];
+    let perenimed = ["Pärnpuu", "Tamm", "Juurikas"];
+    let loetelud = [
+      { pealkiri: "Eesnimed", sisu: eesnimed, aasta: 1988 },
+      { pealkiri: "Perenimed", sisu: perenimed, maakond:"Läänemaa" },
+      { pealkiri: "Eesnimed veelkord", sisu: eesnimed},
+    ];
+
+
+    function KuvaNimed(andmed) {
+      return (
+        <div>
+          {" "}
+          <h2>{andmed.element.pealkiri} {andmed.element.aasta && <span>({andmed.element.aasta})</span>} </h2>
+          <ul>
+            {andmed.element.sisu.map((nimi, index) => (
+              <li key={index}>{nimi}</li>
+            ))}
+          </ul>{" "}
+          {andmed.element.maakond && <p>Maakond: {andmed.element.maakond}</p>}
+        </div>
+      );
+        
+    }
+
+    function MituLoetelu(andmed){
+      return (
+        <div>
+          <h1>{andmed.pealkiri}</h1>
+          {andmed.andmestik.map((kirje, index) => (
+            <KuvaNimed key={index} element={kirje} />
+          ))}
+        </div>
+      );
+    }
+
+    function Leht(){
+      return (
+        <div>
+          <MituLoetelu andmestik={loetelud} pealkiri="loetelu 1" />
+          <MituLoetelu andmestik={loetelud} pealkiri="loetelu 2" />
+          
+
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("kiht1"));
+    root.render(<Leht />);
+    // lisage loetelu komponendile pealkiri
+    // lisage eraldi komponent lehe tarbeks, sinna sisse 
+    // kas loetelu komponenti, kumbki eraldi pealkirja ja sisuga
+  </script>
+</html>
