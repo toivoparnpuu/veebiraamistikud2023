@@ -37,3 +37,16 @@ näide:
   </script>
 
 ```
+
+### Tervitus04.html
+
+Tingimuse lisamine, kui andmete sisu on olemas kuva sisu, muu juhul näita, et sisu on puudu.
+Kasutusel on Javascripti konstruktioon ternary operator ?"":"", mis on lühend if-else konstruktsioonile.
+
+```javascript
+
+    function Tervitus(props){
+      return <h3>Tere, {props.eesnimi ? props.eesnimi: "eesnimi puudub"} {props.perenimi ? props.perenimi: "perenimi puudub"}!</h3>;
+    }
+  
+```
