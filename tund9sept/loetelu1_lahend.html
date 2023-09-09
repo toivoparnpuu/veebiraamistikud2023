@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reacti katsetused</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="kiht1"></div>
+  </body>
+  <script type="text/babel">
+    let eesnimed = ["Toivo", "Mari", "Juhan"];
+    let perenimed = ["Pärnpuu", "Tamm", "Juurikas"];
+    function Leht(andmed) {
+      return (
+        <div>
+          {" "}
+          <h1>{andmed.pealkiri}</h1>
+          <ul>
+            {andmed.nimed.map((nimi, index) => (
+              <li key={index}>{nimi}</li>
+            ))}
+          </ul>{" "}
+        </div>
+      );
+      
+    }
+    function KuvaNimed(){
+      return (
+        <div>
+          <Leht pealkiri="eesnimed" nimed={eesnimed} />
+          
+          <Leht pealkiri="perenimed" nimed={perenimed} />
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("kiht1"));
+    root.render(<KuvaNimed />);
+    // lisage loetelu komponendile pealkiri
+    // lisage eraldi komponent lehe tarbeks, sinna sisse 
+    // kas loetelu komponenti, kumbki eraldi pealkirja ja sisuga
+  </script>
+</html>
