@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reacti katsetused</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="kiht1"></div>
+  </body>
+  <script type="text/babel">
+    function Leht() {
+      const [failiNimi, muudaFailiNimi] = React.useState("eesnimed.txt");
+      const [eesnimed, muudaEesnimed] = React.useState(["Madis", "Malle"]);
+      
+      React.useEffect(() => {
+        fetch("eesnimed.txt")
+          .then((d) => d.text())
+          .then( t => muudaEesnimed(t.split("\n")));
+      }, [failiNimi]);
+
+      return <div>
+        <input type="button" value="Eesnimed2" onClick={() => muudaFailiNimi("eesnimed2.txt")} />
+        <input type="button" value="Eesnimed" onClick={() => muudaFailiNimi("eesnimed.txt")} />
+
+        <ul>{eesnimed.map((nimi, index) => <li key={index}>{nimi}</li>)}</ul></div>;
+    }
+    const root = ReactDOM.createRoot(document.getElementById("kiht1"));
+    root.render(<Leht />);
+  </script>
+</html>
