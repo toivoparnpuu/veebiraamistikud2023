@@ -6,3 +6,34 @@
 
 ## Kohtumine 09.09.2023
 
+### Tervitus02.html
+
+See sisaldab näiteid kahe funktsiooni kasutamise kohta ning lisaks sellele parameetrite props kasutuse kohta.
+Jäi õhku küsimus, kas on võimalik props asendada ka mingi muu sõnaga?
+näide:
+
+```javascript
+
+  <script type="text/babel">
+     const root= ReactDOM.createRoot(document.getElementById("kiht1"))
+
+    function Tervitus(props){
+      return <h3>Tere, {props.eesnimi} {props.perenimi}!</h3>;
+    }
+    
+    function Leht(){
+      return (
+        <div>
+          <h1>Tervitusleht!</h1>
+          
+          <Tervitus eesnimi="Toivo" perenimi="Pärnpuu"/>
+          <Tervitus eesnimi="Mari" perenimi="Tamm"/>
+          <Tervitus eesnimi="Juhan" perenimi="Juurikas"/>
+        </div>
+      );
+    }
+
+     root.render(<Leht />);
+  </script>
+
+```
