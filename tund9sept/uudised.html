@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <title>Postimehe RSS-voog</title>
+</head>
+<body>
+  <script>
+    // Laadi alla RSS-voog
+    const rssUrl = "https://postimees.ee/rss/";
+    const rss = await fetch(rssUrl);
+    const rssData = await rss.text();
+
+    // Prindi välja voo sisu
+    const rssItems = JSON.parse(rssData);
+    for (const rssItem of rssItems) {
+      console.log(rssItem.title);
+    }
+  </script>
+</body>
+</html>
