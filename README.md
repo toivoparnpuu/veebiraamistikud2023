@@ -5,6 +5,9 @@
 [Jaagup Tigu](https://tigu.hk.tlu.ee/~jaagup/23/)
 
 ## Kohtumine 09.09.2023
+## kodutöö 1
+Sisseloeteud andmestiku kujundamine veebilehel.
+Vajadusel tehke tunni näitel uuesti läbi. Otsige koostage oma andmestik. Kuvage andmed lehele. Kui jaksu, siis katsetage osa andmete näitamist / peitmist. 
 
 ### Tervitus02.html
 
