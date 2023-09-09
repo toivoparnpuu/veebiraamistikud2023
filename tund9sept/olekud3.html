@@ -17,18 +17,18 @@
   </body>
   <script type="text/babel">
     function Leht() {
-      const [failiNimi, muudaFailiNimi] = React.useState("eesnimed.txt");
+      const [failiNimi, muudaFailiNimi] = React.useState("https://tigu.hk.tlu.ee/~toivo.parnpuu/veebiraamistikud2023/tund9sept/uudised1.php");
       const [eesnimed, muudaEesnimed] = React.useState(["Madis", "Malle"]);
       
       React.useEffect(() => {
-        fetch("eesnimed.txt")
+        fetch(failiNimi)
           .then((d) => d.text())
           .then( t => muudaEesnimed(t.split("\n")));
       }, [failiNimi]);
 
       return <div>
-        <input type="button" value="Eesnimed2" onClick={() => muudaFailiNimi("eesnimed2.txt")} />
         <input type="button" value="Eesnimed" onClick={() => muudaFailiNimi("eesnimed.txt")} />
+        <input type="button" value="Eesnimed2" onClick={() => muudaFailiNimi("eesnimed2.txt")} />
 
         <ul>{eesnimed.map((nimi, index) => <li key={index}>{nimi}</li>)}</ul></div>;
     }
