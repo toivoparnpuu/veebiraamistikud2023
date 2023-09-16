@@ -1,45 +1,44 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html>
   <head>
     <title>Reacti katsetused</title>
-    <script
-      src="https://unpkg.com/react@18/umd/react.development.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-      crossorigin
-    ></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
-    <div id="kiht1"></div>
+    <div id="kiht1"></div>	
   </body>
   <script type="text/babel">
-    function Leht() {
-      const [failiNimi, muudaFailiNimi] = React.useState("https://tigu.hk.tlu.ee/~toivo.parnpuu/veebiraamistikud2023/tund9sept/uudised1.php");
-      const [eesnimed, muudaEesnimed] = React.useState(["Madis", "Malle"]);
-      
-      React.useEffect(() => {
-        fetch(failiNimi)
-          .then((d) => d.text())
-          .then( t => new DOMParser().parseFromString(t, "text/xml"))
-          .then(tootleXML);
-      }, [failiNimi]);
-
-      function tootleXML(doc){
-        let m = doc.getElementsByTagName("item");
-        console.log(m[0].getElementsByTagName("title")[0].childNodes[0].nodeValue);
-
-      }
-
-      return <div>
-        <input type="button" value="Eesnimed" onClick={() => muudaFailiNimi("eesnimed.txt")} />
-        <input type="button" value="Eesnimed2" onClick={() => muudaFailiNimi("eesnimed2.txt")} />
-
-        <ul>{eesnimed.map((nimi, index) => <li key={index}>{nimi}</li>)}</ul></div>;
-    }
-    const root = ReactDOM.createRoot(document.getElementById("kiht1"));
-    root.render(<Leht />);
+	
+     function Leht(){
+	     const [failinimi, muudaFailinimi]=React.useState("uudised.xml");
+	     const [eesnimed, muudaEesnimed]=React.useState(["Madis", "Malle"]);
+		 React.useEffect(() =>{
+		    fetch(failinimi).
+			  then(d => d.text()).
+			  then(t => new DOMParser().parseFromString(t, "text/xml")).
+			  then(tootleXML);
+		 }, [failinimi]);
+		 
+		 function tootleXML(doc){
+		     let vastused=[];
+		     let m=doc.getElementsByTagName("item");
+			 for(let i=0; i<m.length; i++){
+			     vastused.push(m[i].getElementsByTagName("title")[0].childNodes[0].nodeValue);
+			 }
+			 console.log(vastused);
+			 muudaEesnimed(vastused);
+		 }
+		 
+	     return <div>
+		    <input type="button" value="Loe inglise nimed" 
+			            onClick={() => muudaFailinimi("eesnimed2.txt")} />
+						
+		 <ul>{eesnimed.map((eesnimi, nr) => <li key={nr}>{eesnimi}</li>)}</ul></div>
+	 }
+     const root= ReactDOM.createRoot(document.getElementById("kiht1"))
+     root.render(<Leht />);
   </script>
 </html>
